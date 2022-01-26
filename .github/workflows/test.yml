@@ -7,33 +7,33 @@ on:
    
 
 jobs:
-  terraform:
-    name: 'Terraform'
-    runs-on: ubuntu-latest
-    permissions:
-      contents: 'read'
-      id-token: 'write'
+    terraform:
+      name: 'Terraform'
+      runs-on: ubuntu-latest
+      permissions:
+        contents: 'read'
+        id-token: 'write'
 
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    defaults:
-      run:
-        shell: bash
+      # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+      defaults:
+        run:
+          shell: bash
 
-    steps:
-    # Checkout the repository to the GitHub Actions runner
-    - name: Checkout
-      uses: actions/checkout@v2
+      steps:
+      # Checkout the repository to the GitHub Actions runner
+      - name: Checkout
+        uses: actions/checkout@v2
 
- 
-    - id: 'auth'
-      uses: 'google-github-actions/auth@v0'
-      with:
-        credentials_json: ${{ secrets.GCP_CREDENTIALS }}
-        
-    - id: 'upload-file'
-      uses: 'google-github-actions/upload-cloud-storage@v0'
-      with:
-        path: 'dialogflow/DialogflowTest.zip'
-        destination: 'gs://sample-bucket-en-service-provider-chatbot-test/dialogflow1.zip'
 
-  
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - id: 'upload-file'
+        uses: 'google-github-actions/upload-cloud-storage@v0'
+        with:
+          path: 'dialogflow/DialogflowTest.zip'
+          destination: 'gs://sample-bucket-en-service-provider-chatbot-test/dialogflow1.zip'
+
+

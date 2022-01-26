@@ -24,13 +24,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    steps:
+ 
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
       with:
-        workload_identity_provider: 'projects/588304974603/locations/global/workloadIdentityPools/github-actions-workload-pool/providers/github-actions-provider'
-        service_account: 'github-actions-sa@service-provider-chatbot-test.iam.gserviceaccount.com'
-
+        credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+        
     - id: 'upload-file'
       uses: 'google-github-actions/upload-cloud-storage@v0'
       with:

@@ -27,26 +27,8 @@ jobs:
       with:
         credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-    - id: 'secrets'
-      uses: 'google-github-actions/get-secretmanager-secrets@v0'
-      with:
-        secrets: |-
-          test_token:projects/885475882644/secrets/test
-          
-    - name: Create env file
-      run: |
-          touch .env
-          echo '${{ steps.secrets.outputs.token }}' >> .env
+      # Build and push image to Google Container Registry
+    - name: Build
+      run: gcloud builds submit  ~/monolith-to-microservices/monolith --tag gcr.io/${GOOGLE_CLOUD_PROJECT}/monolith:1.0.0
 
-    - name: Deploy to App Engine
-      id: deploy
-      uses: google-github-actions/deploy-appengine@v0.2.0
-      with:
-        deliverables: app.yaml
-        version: v1
-        project_id: ${{ secrets.GCP_PROJECT }}
-        credentials: ${{ secrets.GCP_CREDENTIALS }}
-        
-
-    - name: Test
-      run: curl "${{ steps.deploy.outputs.url }}"
+    

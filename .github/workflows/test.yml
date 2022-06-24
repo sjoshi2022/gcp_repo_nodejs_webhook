@@ -25,6 +25,6 @@ jobs:
         credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
     - id: 'upload-file'
-      run: gcloud run deploy --image=gcr.io/grand-drive-344119/monolith:1.0.0 --platform managed
+      run: gcloud builds submit  gcp_repo_nodejs_webhook --tag gcr.io/grand-drive-344119/monolith:1.0.0
 
 

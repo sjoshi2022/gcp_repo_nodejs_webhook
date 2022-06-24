@@ -25,4 +25,4 @@ jobs:
         credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
     - id: 'upload-file'
-      run: gcloud builds submit  gcp_repo_nodejs_webhook --tag gcr.io/grand-drive-344119/monolith:1.0.0
+      run: gcloud builds submit  ./ --tag gcr.io/grand-drive-344119/monolith:1.0.0

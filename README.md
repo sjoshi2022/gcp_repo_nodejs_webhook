@@ -1,2 +1,9 @@
-# gcp_repo_nodejs_webhook
-gcp_repo_nodejs_webhook
+# Node Hello World
+
+Simple node.js app that servers "hello world"
+
+Great for testing simple deployments to the cloud
+
+## Run It
+
+`npm start`
